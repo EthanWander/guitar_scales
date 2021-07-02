@@ -1,7 +1,9 @@
 NOTES = ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#"]
 STANDARD_TUNING = ["E", "A", "D", "G", "B", "E"]
+NECK_DOTS = [2, 4, 6, 9]
 MAJOR_SCALE = [0, 2, 4, 5, 7, 9, 11]
 MINOR_SCALE = [0, 2, 3, 5, 7, 8, 10]
+ARABIC_SCALE = [0, 1, 5, 6, 9, 10]
 
 
 class Scale:
@@ -28,16 +30,27 @@ class Scale:
             else:
                 print_out = print_out + "- "
         print(print_out)
+    
+    def print_neck_dots(self):
+        print_out = "   : "
+        for i in range(11):
+            if NECK_DOTS.count(i):
+                print_out = print_out + ". "
+            else:
+                print_out = print_out + "  "
+        print_out = print_out + ":"
+        print(print_out)
 
     def print(self):
         reversed_tuning = self.tuning
         reversed_tuning.reverse()
+        self.print_neck_dots()
         for string_note in reversed_tuning:
             self.print_row(string_note)
 
 
 def main():
-    minor_scale = Scale(MINOR_SCALE, "E", STANDARD_TUNING)
+    minor_scale = Scale(ARABIC_SCALE, "B", STANDARD_TUNING)
     minor_scale.print()
 
 
